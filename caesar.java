@@ -5,32 +5,35 @@ public static void main(String[] args){
 		System.out.println("Thrice game" + '\n' + "Round 1:");
 		Scanner scan = new Scanner(System.in);
 		
-		int value = 0, count = 0, round2Rolls, round2Mult = 1, triplet1;
-		double power3 = 1, tally = 0;
+		int count = 0, round2Rolls, round2Mult = 1, triplet1;
+		double power3 = 1.0, tally = 0.0;
 		
 		System.out.println("Rolling die");
 		int die1 = (int) (Math.random()*6 + 1);
 		int die2 = (int) (Math.random()*6 + 1);
 		int die3 = (int) (Math.random()*6 + 1);
-		System.out.println("Die 1 = " + die1 + " Die 2 = " + die2 + " Die 3 = " + die3);
+		System.out.println(die1 + " | " + die2 + " | " + die3);
+		System.out.println("Adding");
 		
 		count++;
 		tally = tally + die1 + die2 + die3;
 		
 		while(!(die1 == die2 && die2 == die3)){
-			System.out.println("Rerolling");
+			System.out.println('\n' + "Rerolling");
 			
 			count++;
 			
 			die1 = (int) (Math.random()*6 + 1);
 			die2 = (int) (Math.random()*6 + 1);
 			die3 = (int) (Math.random()*6 + 1);
-			System.out.println("Die 1 = " + die1 + " Die 2 = " + die2 + " Die 3 = " + die3);
+			System.out.println(die1 + " | " + die2 + " | " + die3);
 			
 			if(count % 3 == 0){
 				tally = tally - die1 - die2 - die3;
+				System.out.println("Subtracting");
 			} else {
 				tally = tally + die1 + die2 + die3;
+				System.out.println("Adding");
 			}
 
 		}
