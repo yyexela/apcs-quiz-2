@@ -5,8 +5,11 @@ public static void main(String[] args){
 		//System.out.println("Thrice game" + '\n' + "Round 1:");
 		Scanner scan = new Scanner(System.in);
 		
-		int count = 0, round2Rolls, round2Mult = 1, triplet1, die1, die2, die3;
+		int count = 0, round2Rolls, round2Mult = 1, triplet1, die1, die2, die3, playerFlow = -1;
 		double power3 = 1.0, tally = 0.0, sum = 0.0;
+		double max = Double.MAX_VALUE, infinity = Double.MAX_VALUE * 2;
+		boolean overflow = false;
+
 		
 		for(int j = 1; j <= 1000; j++){
 			//System.out.println("Rolling die");
@@ -81,6 +84,15 @@ public static void main(String[] args){
 				tally = die1;
 			}
 			
+			if(tally == infinity){
+				System.out.println("Score couldn't be saved in a 64 bit floating point variable, setting score to max double");
+				tally = max;
+				overflow = true;
+				playerFlow = j;
+			}
+
+			System.out.println("Finaly tally = " + tally);
+
 			System.out.println("Player " + j + " scored " + tally);
 			sum = sum + tally;
 			count = 0; round2Mult = 0; power3 = 1.0; tally = 0.0;
@@ -89,7 +101,17 @@ public static void main(String[] args){
 		//System.out.println("Max double value: " + max);
 		//long max1 = Long.MAX_VALUE;
 		//System.out.println("Max long value: " + max);
+
+		if(sum == infinity){
+			System.out.println("Sum overflowed, setting to max double value");
+			sum = max;
+		}
 		
 		System.out.println("Average: " + sum / 1000.0);
+
+		if(overflow){
+			System.out.println("Player " + playerFlow + " overflowed");
+		}
+
 	}
 }
