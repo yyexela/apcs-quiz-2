@@ -7,6 +7,7 @@ public static void main(String[] args){
 		
 		int count = 0, round2Rolls, round2Mult = 1, triplet1;
 		double power3 = 1.0, tally = 0.0;
+		double max = Double.MAX_VALUE, infinity = Double.MAX_VALUE * 2;
 		
 		System.out.println("Rolling die");
 		int die1 = (int) (Math.random()*6 + 1);
@@ -82,7 +83,11 @@ public static void main(String[] args){
 				tally = die1;
 			}
 		}
-		
+
+		if(tally == infinity){
+			System.out.println("Score couldn't be saved in a 64 bit floating point variable, setting score to max double");
+			tally = max;
+		}
 		System.out.println("Finaly tally = " + tally);
 	}
 }
